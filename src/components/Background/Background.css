@@ -1,0 +1,9 @@
+.background {
+  height: 35vh;
+  background-image: url('../../assets/pattern-bg-desktop.png');
+  background-size: cover;
+  flex-grow: 0;
+}
+.map {
+  flex-grow: 2;
+}
