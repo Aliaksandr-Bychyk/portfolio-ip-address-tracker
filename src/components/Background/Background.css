@@ -4,6 +4,6 @@
   background-size: cover;
   flex-grow: 0;
 }
-.map {
+.map { 
   flex-grow: 2;
 }
