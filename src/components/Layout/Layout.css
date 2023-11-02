@@ -13,12 +13,13 @@
   line-height: 32px;
   font-weight: 500;
 }
-.search-box {
+.form-box {
   display: flex;
   border-radius: 16px;
   overflow: hidden;
   width: 555px;
   margin-bottom: 48px;
+  box-sizing: border-box;
 }
 .input-search {
   padding: 0 25px;
@@ -42,6 +43,10 @@
 }
 .input-submit:hover {
   cursor: pointer;
+}
+.input-submit:disabled {
+  cursor: unset;
+  background-color: hsl(0, 0%, 59%);
 }
 .control-panel {
   position: absolute;
