@@ -1,10 +1,8 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import './Layout.css';
-import { useForm, SubmitHandler } from 'react-hook-form';
-
-interface IFormInputs {
-  ip: string;
-}
+import { useForm } from 'react-hook-form';
+import IFormInputs from '../../interfaces/IFormInputs.ts';
+import { DataContext } from '../App/App.tsx';
 
 const Layout: FC = () => {
   const {
@@ -13,13 +11,7 @@ const Layout: FC = () => {
     formState: { isValid },
   } = useForm<IFormInputs>({});
 
-  const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
-    fetch(
-      `http://ip-api.com/json/${data.ip}?fields=status,message,country,city,zip,timezone,isp,query`
-    )
-      .then((res) => res.json())
-      .then((value) => console.log(value));
-  };
+  const { onSubmit, ip, location, timezone, isp } = useContext(DataContext);
 
   return (
     <div className="layout">
@@ -37,22 +29,22 @@ const Layout: FC = () => {
       <ul className="control-panel">
         <li className="control-panel__element">
           <div>IP Address</div>
-          <div>0.0.0.0</div>
+          <div>{ip}</div>
         </li>
         <div className="vl"></div>
         <li className="control-panel__element">
           <div>Location</div>
-          <div>Brooklyn, NY 10001</div>
+          <div>{location}</div>
         </li>
         <div className="vl"></div>
         <li className="control-panel__element">
           <div>Timezone</div>
-          <div>UTC-5:00</div>
+          <div>{timezone}</div>
         </li>
         <div className="vl"></div>
         <li className="control-panel__element">
           <div>ISP</div>
-          <div>SpaceX Starlink</div>
+          <div>{isp}</div>
         </li>
       </ul>
     </div>
