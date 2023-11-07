@@ -3,6 +3,7 @@ enum ActionTypes {
   SHOW_LOCATION = 'showLocation',
   SHOW_TIMEZONE = 'showTimezone',
   SHOW_ISP = 'showISP',
+  SHOW_MAP = 'showMap',
 }
 
 export default ActionTypes;

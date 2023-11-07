@@ -19,6 +19,10 @@ type IAction =
   | {
       type: ActionTypes.SHOW_ISP;
       isp: string;
+    }
+  | {
+      type: ActionTypes.SHOW_MAP;
+      coords: [lat: number, lon: number];
     };
 
 const reducer = (state: IState, action: IAction) => {
@@ -34,6 +38,8 @@ const reducer = (state: IState, action: IAction) => {
       return { ...state, timezone: action.timezone };
     case ActionTypes.SHOW_ISP:
       return { ...state, isp: action.isp };
+    case ActionTypes.SHOW_MAP:
+      return { ...state, coords: action.coords };
     default:
       return state;
   }

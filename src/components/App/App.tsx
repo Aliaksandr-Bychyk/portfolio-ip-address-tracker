@@ -7,22 +7,23 @@ import IFormInputs from '../../interfaces/IFormInputs.ts';
 import IDataContext from '../../interfaces/IDataContext.ts';
 import reducer from '../../utils/reducer.tsx';
 import ActionTypes from '../../interfaces/ActionTypes.ts';
+import IState from '../../interfaces/IState.ts';
+
+const initValues: IState = {
+  ip: '0.0.0.0',
+  location: 'Brooklyn, NY 10001',
+  timezone: 'UTC-5:00',
+  isp: 'SpaceX Starlink',
+  coords: [52.2323, 21.0061],
+};
 
 const DataContext = createContext<IDataContext>({
   onSubmit: () => {},
-  ip: '',
-  location: '',
-  timezone: '',
-  isp: '',
+  ...initValues,
 });
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, {
-    ip: '0.0.0.0',
-    location: 'Brooklyn, NY 10001',
-    timezone: 'UTC-5:00',
-    isp: 'SpaceX Starlink',
-  });
+  const [state, dispatch] = useReducer(reducer, initValues);
 
   const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
     fetch(
@@ -30,7 +31,6 @@ const App = () => {
     )
       .then((res) => res.json())
       .then((value) => {
-        console.log(value);
         dispatch({ type: ActionTypes.SHOW_IP, ip: value.query });
         dispatch({
           type: ActionTypes.SHOW_LOCATION,
@@ -40,6 +40,16 @@ const App = () => {
         });
         dispatch({ type: ActionTypes.SHOW_TIMEZONE, timezone: value.timezone });
         dispatch({ type: ActionTypes.SHOW_ISP, isp: value.isp });
+        fetch(
+          `https://nominatim.openstreetmap.org/search?q=${value.city},+${value.country}&format=json`
+        )
+          .then((res) => res.json())
+          .then((v) => {
+            dispatch({
+              type: ActionTypes.SHOW_MAP,
+              coords: [v[0].lat, v[0].lon],
+            });
+          });
       });
   };
   return (
