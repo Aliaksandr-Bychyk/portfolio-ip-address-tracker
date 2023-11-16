@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import './Attribution.css';
 
 const Attribution: FC = () => (
   <section id="attribution" className="attribution">
