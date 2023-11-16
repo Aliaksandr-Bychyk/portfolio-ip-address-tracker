@@ -22,7 +22,7 @@ const Controls: FC = () => {
     formState: { isValid },
   } = useForm<IFormInputs>({});
 
-  const { onSubmit, ip, location, timezone, isp } = useContext(DataContext);
+  const { onSubmit, ip, location, timezone, isp, showControlPanel } = useContext(DataContext);
 
   const controlPanelElements = [
     { id: 0, name: 'IP Address', value: ip },
@@ -51,7 +51,7 @@ const Controls: FC = () => {
             tabIndex={2}
           />
         </form>
-        <ul className="control-panel">
+        <ul className={`control-panel ${showControlPanel}`}>
           {controlPanelElements.map((el) => (
             <li key={el.id} className="control-panel__element">
               <div className="element-title">{el.name}</div>

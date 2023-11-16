@@ -6,6 +6,7 @@ interface IState {
   timezone: string;
   isp: string;
   coords: [lat: number, lon: number] | LatLngExpression;
+  showControlPanel: string;
 }
 
 export default IState;

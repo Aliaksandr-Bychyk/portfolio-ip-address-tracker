@@ -62,6 +62,9 @@
   width: 1110px;
   align-items: center;
 }
+.control-panel.hide {
+  visibility: hidden;
+}
 .control-panel__element {
   position: relative;
   display: flex;

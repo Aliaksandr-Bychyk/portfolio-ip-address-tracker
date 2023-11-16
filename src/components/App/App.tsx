@@ -15,6 +15,7 @@ const initValues: IState = {
   timezone: 'Europe/Warsaw',
   isp: 'SpaceX Starlink',
   coords: [52.2323, 21.0061],
+  showControlPanel: 'hide',
 };
 
 const DataContext = createContext<IDataContext>({
@@ -40,6 +41,7 @@ const App = () => {
         });
         dispatch({ type: ActionTypes.SHOW_TIMEZONE, timezone: value.timezone });
         dispatch({ type: ActionTypes.SHOW_ISP, isp: value.isp });
+        dispatch({ type: ActionTypes.SHOW_CONTROL_PANEL });
         fetch(
           `https://nominatim.openstreetmap.org/search?q=${value.city},+${value.country}&format=json`
         )

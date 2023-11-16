@@ -23,6 +23,9 @@ type IAction =
   | {
       type: ActionTypes.SHOW_MAP;
       coords: [lat: number, lon: number];
+    }
+  | {
+      type: ActionTypes.SHOW_CONTROL_PANEL;
     };
 
 const reducer = (state: IState, action: IAction) => {
@@ -40,6 +43,8 @@ const reducer = (state: IState, action: IAction) => {
       return { ...state, isp: action.isp };
     case ActionTypes.SHOW_MAP:
       return { ...state, coords: action.coords };
+    case ActionTypes.SHOW_CONTROL_PANEL:
+      return { ...state, showControlPanel: 'show' };
     default:
       return state;
   }
