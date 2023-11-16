@@ -1,18 +1,18 @@
 import { createContext, useReducer } from 'react';
 import { SubmitHandler } from 'react-hook-form';
-import Background from '../Background/Background.tsx';
-import Layout from '../Layout/Layout.tsx';
 import './App.css';
 import IFormInputs from '../../interfaces/IFormInputs.ts';
 import IDataContext from '../../interfaces/IDataContext.ts';
 import reducer from '../../utils/reducer.tsx';
 import ActionTypes from '../../interfaces/ActionTypes.ts';
 import IState from '../../interfaces/IState.ts';
+import Attribution from '../Attribution/Attribution.tsx';
+import Tracker from '../Tracker/Tracker.tsx';
 
 const initValues: IState = {
   ip: '0.0.0.0',
   location: 'Brooklyn, NY 10001',
-  timezone: 'UTC-5:00',
+  timezone: 'Europe/Warsaw',
   isp: 'SpaceX Starlink',
   coords: [52.2323, 21.0061],
 };
@@ -53,12 +53,10 @@ const App = () => {
       });
   };
   return (
-    <div className="app">
-      <DataContext.Provider value={{ onSubmit, ...state }}>
-        <Layout />
-        <Background />
-      </DataContext.Provider>
-    </div>
+    <DataContext.Provider value={{ onSubmit, ...state }}>
+      <Tracker />
+      <Attribution />
+    </DataContext.Provider>
   );
 };
 

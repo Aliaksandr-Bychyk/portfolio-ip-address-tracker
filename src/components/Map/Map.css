@@ -1,5 +1,6 @@
 .background {
   height: 35vh;
+  min-height: 260px;
   background-image: url('../../assets/pattern-bg-desktop.png');
   background-size: cover;
   flex-grow: 0;

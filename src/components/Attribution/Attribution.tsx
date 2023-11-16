@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 const Attribution: FC = () => (
-  <div className="attribution">
+  <section id="attribution" className="attribution">
     Challenge by{' '}
     <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">
       Frontend Mentor
@@ -11,7 +11,7 @@ const Attribution: FC = () => (
       Aliaksandr Bychyk
     </a>
     .
-  </div>
+  </section>
 );
 
 export default Attribution;
